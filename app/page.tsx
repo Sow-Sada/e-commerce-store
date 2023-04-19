@@ -6,9 +6,6 @@ import washer from "../public/washer.png";
 import iphone from "../public/iphone.png";
 import switchs from "../public/switch.png";
 import HomeCards from "./components/HomeCards";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
