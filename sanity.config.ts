@@ -1,5 +1,6 @@
 import {defineConfig} from "sanity"
 import {deskTool} from "sanity/desk"
+import product from "./sanity/schemas/product-schema"
 const config = defineConfig({
 
   projectId: "bjr53fhv",
@@ -7,7 +8,8 @@ const config = defineConfig({
   title: "My e-commerce Website",
   apiVersion: "2023-04-19",
   basePath: "/admin",
-  plugins: [deskTool()]
+  plugins: [deskTool()],
+  schema: {types: [product]}
 
 })
 
