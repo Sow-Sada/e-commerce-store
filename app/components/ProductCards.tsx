@@ -1,7 +1,7 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 type ProductCardsProps = {
-  src: HTMLImageElement | StaticImageData;
+  src: string;
   title: string;
   alt: string;
   price: string;
@@ -9,9 +9,17 @@ type ProductCardsProps = {
 
 const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
   return (
-    <div className="w-80 bg-white shadow rounded">
-      <div className="h-48 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center">
-        <div className="flex justify-between"> </div>
+    <div className="w-fit lg:w-full bg-white shadow rounded">
+      <div className="h-48 lg:w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center">
+        <div className="flex justify-center">
+          <Image
+            src={src}
+            alt={alt}
+            height={150}
+            width={150}
+            className="min-h-[150px] object-contain max-h-[150px]"
+          />
+        </div>
         <div>
           <span className="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none">
             available
@@ -19,11 +27,8 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
         </div>
       </div>
       <div className="p-4 flex flex-col items-center">
-        <p className="text-gray-400 font-light text-xs text-center">
-          Hammond robotics
-        </p>
-        <h1 className="text-gray-800 text-center mt-1">Item name</h1>
-        <p className="text-center text-gray-800 mt-1">€1299</p>
+        <h1 className="text-gray-800 text-center mt-1">{title}</h1>
+        <p className="text-center text-gray-800 mt-1">€{price}</p>
         <div className="inline-flex items-center mt-2">
           <button className="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
             <svg
@@ -34,9 +39,9 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M20 12H4"
               />
             </svg>
@@ -53,9 +58,9 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M12 4v16m8-8H4"
               />
             </svg>
@@ -71,9 +76,9 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
             stroke="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
             />
           </svg>
