@@ -1,15 +1,20 @@
 import Image from "next/image";
+import { useCart } from "../context/CartContext";
 
 type ProductCardsProps = {
+  _id: string;
   src: string;
   title: string;
   alt: string;
   price: string;
 };
 
-const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
+const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
+  const { getItemQty, increaseCartQty, decreaseCartQty, removeFromCart } =
+    useCart();
+  const qty = getItemQty(_id);
   return (
-    <div className="w-fit lg:w-full bg-white shadow rounded">
+    <div className="px-4 w-fit lg:w-full bg-white shadow rounded">
       <div className="h-48 lg:w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center">
         <div className="flex justify-center">
           <Image
@@ -27,9 +32,11 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
         </div>
       </div>
       <div className="p-4 flex flex-col items-center">
-        <h1 className="text-gray-800 text-center mt-1">{title}</h1>
+        <h1 className="text-gray-800 min-h-[48px] md:min-h-[24px] text-center mt-1">
+          {title}
+        </h1>
         <p className="text-center text-gray-800 mt-1">€{price}</p>
-        <div className="inline-flex items-center mt-2">
+        <div className="lg:inline-flex hidden items-center mt-2">
           <button className="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +53,7 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
               />
             </svg>
           </button>
-          <div className="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none">
+          <div className="bg-gray-100 border-t border-b  border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none">
             2
           </div>
           <button className="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
@@ -66,8 +73,8 @@ const ProductCards = ({ src, title, alt, price }: ProductCardsProps) => {
             </svg>
           </button>
         </div>
-        <button className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center">
-          Add to order
+        <button className="py-2 px-4 bg-[#57C5B6] text-white rounded hover:bg-green-500 disabled:opacity-50 mt-4 w-full flex self-end items-center justify-center">
+          Add
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 ml-2"
