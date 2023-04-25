@@ -12,7 +12,14 @@ const CartItems = ({ _id, src, title, alt, price }: CartItemsProps) => {
   return (
     <ul className="space-y-4">
       <li className="flex items-center gap-4">
-        <Image src={src} alt={alt} className="h-16 w-16 rounded object-cover" />
+        <Image
+          key={_id}
+          src={src}
+          alt={alt}
+          className="h-16 w-16 rounded object-cover"
+          height={150}
+          width={150}
+        />
 
         <div>
           <h3 className="text-sm text-gray-900">{title}</h3>
