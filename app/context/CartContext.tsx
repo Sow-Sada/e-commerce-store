@@ -6,11 +6,22 @@ type CartProviderProps = {
 };
 type CartItem = {
   _id: string;
+  title: string;
+  price: string;
+  src: string;
+  alt: string;
   qty: number;
 };
 type CartContext = {
+  cartItems: CartItem[];
   getItemQty: (_id: string) => number;
-  increaseCartQty: (_id: string) => void;
+  increaseCartQty: (
+    _id: string,
+    title: string,
+    price: string,
+    src: string,
+    alt: string
+  ) => void;
   decreaseCartQty: (_id: string) => void;
   removeFromCart: (_id: string) => void;
 };
@@ -28,14 +39,20 @@ export function CartContextProvider({ children }: CartProviderProps) {
     return cartItems.find((item) => item._id === _id)?.qty || 0;
   }
 
-  function increaseCartQty(_id: string) {
+  function increaseCartQty(
+    _id: string,
+    title: string,
+    price: string,
+    src: string,
+    alt: string
+  ) {
     setCartItems((currItems) => {
       if (currItems.find((item) => item._id === _id) == null) {
-        return [...currItems, { _id, qty: 1 }];
+        return [...currItems, { _id, qty: 1, title, price, src, alt }];
       } else {
         return currItems.map((item) => {
           if (item._id === _id) {
-            return { ...item, qty: item.qty - 1 };
+            return { ...item, qty: item.qty + 1 };
           } else {
             return item;
           }
@@ -67,7 +84,13 @@ export function CartContextProvider({ children }: CartProviderProps) {
   }
   return (
     <CartContext.Provider
-      value={{ getItemQty, increaseCartQty, decreaseCartQty, removeFromCart }}
+      value={{
+        cartItems,
+        getItemQty,
+        increaseCartQty,
+        decreaseCartQty,
+        removeFromCart,
+      }}
     >
       {children}
     </CartContext.Provider>

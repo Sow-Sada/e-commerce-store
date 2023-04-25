@@ -1,17 +1,22 @@
 import CartItems from "./CartItems";
 import Link from "next/link";
-export type CartProps = {
-  _id: string;
-  src: string;
-  title: string;
-  alt: string;
-  price: string;
-};
+import { useCart } from "../context/CartContext";
 
-const Cart = ({ _id, src, title, alt, price }: CartProps) => {
+const Cart = () => {
+  const { cartItems } = useCart();
+
   return (
     <div className="mt-4 space-y-6">
-      <CartItems _id={_id} src={src} title={title} alt={alt} price={price} />
+      {cartItems.map((item) => (
+        <CartItems
+          key={item._id}
+          _id={item._id}
+          alt={item.alt}
+          title={item.title}
+          src={item.src}
+          price={item.price}
+        />
+      ))}
 
       <div className="space-y-4 text-center">
         <Link

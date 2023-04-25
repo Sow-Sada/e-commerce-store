@@ -10,9 +10,8 @@ type ProductCardsProps = {
 };
 
 const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
-  // const { getItemQty, increaseCartQty, decreaseCartQty, removeFromCart } =
-  //   useCart();
-  // const qty = getItemQty(_id);
+  const { increaseCartQty, getItemQty } = useCart();
+  const qty = getItemQty(_id);
   return (
     <div className="px-4 w-fit lg:w-full bg-white shadow rounded">
       <div className="h-48 lg:w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center">
@@ -74,7 +73,7 @@ const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
           </button>
         </div>
         <button
-          // onClick={() => increaseCartQty(_id)}
+          onClick={() => increaseCartQty(_id, title, price, src, alt)}
           className="py-2 px-4 bg-[#57C5B6] text-white rounded hover:bg-green-500 disabled:opacity-50 mt-4 w-full flex self-end items-center justify-center"
         >
           Add
