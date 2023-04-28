@@ -10,8 +10,8 @@ type ProductCardsProps = {
 };
 
 const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
-  const { increaseCartQty, getItemQty } = useCart();
-  const qty = getItemQty(_id);
+  const { increaseCartQty } = useCart();
+
   return (
     <div className="px-4 w-fit lg:w-full bg-white shadow rounded">
       <div className="h-48 lg:w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center">
@@ -35,7 +35,7 @@ const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
           {title}
         </h1>
         <p className="text-center text-gray-800 mt-1">€{price}</p>
-        <div className="lg:inline-flex hidden items-center mt-2">
+        {/* <div className="lg:inline-flex hidden items-center mt-2">
           <button className="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
               />
             </svg>
           </button>
-        </div>
+        </div> */}
         <button
           onClick={() => increaseCartQty(_id, title, price, src, alt)}
           className="py-2 px-4 bg-[#57C5B6] text-white rounded hover:bg-green-500 disabled:opacity-50 mt-4 w-full flex self-end items-center justify-center"

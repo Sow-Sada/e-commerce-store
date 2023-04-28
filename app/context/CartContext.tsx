@@ -14,7 +14,7 @@ type CartItem = {
 };
 type CartContext = {
   cartItems: CartItem[];
-  getItemQty: (_id: string) => number;
+  getItemQty: number;
   increaseCartQty: (
     _id: string,
     title: string,
@@ -35,9 +35,7 @@ export function useCart() {
 export function CartContextProvider({ children }: CartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  function getItemQty(_id: string) {
-    return cartItems.find((item) => item._id === _id)?.qty || 0;
-  }
+  const getItemQty = cartItems.reduce((qty, item) => item.qty + qty, 0);
 
   function increaseCartQty(
     _id: string,
