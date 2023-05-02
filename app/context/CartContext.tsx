@@ -14,7 +14,7 @@ type CartItem = {
 };
 type CartContext = {
   cartItems: CartItem[];
-  getItemQty: (_id: string) => number;
+  getItemQty: number;
   increaseCartQty: (
     _id: string,
     title: string,
@@ -35,9 +35,7 @@ export function useCart() {
 export function CartContextProvider({ children }: CartProviderProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  function getItemQty(_id: string) {
-    return cartItems.find((item) => item._id === _id)?.qty || 0;
-  }
+  const getItemQty = cartItems.reduce((qty, item) => item.qty + qty, 0);
 
   function increaseCartQty(
     _id: string,
@@ -47,16 +45,16 @@ export function CartContextProvider({ children }: CartProviderProps) {
     alt: string
   ) {
     setCartItems((currItems) => {
-      if (currItems.find((item) => item._id === _id) == null) {
-        return [...currItems, { _id, qty: 1, title, price, src, alt }];
-      } else {
+      if (currItems.some((item) => item._id === _id)) {
         return currItems.map((item) => {
-          if (item._id === _id) {
+          if (item._id === _id && item.qty < 1) {
             return { ...item, qty: item.qty + 1 };
           } else {
             return item;
           }
         });
+      } else {
+        return [...currItems, { _id, qty: 1, title, price, src, alt }];
       }
     });
   }

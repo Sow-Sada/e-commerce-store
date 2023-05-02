@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+
   return (
     <nav className="bg-[#57C5B6] flex justify-between px-4 py-4">
       <div>
@@ -22,11 +23,11 @@ const Navbar = () => {
           Sale
         </Link>
         <Link className="hover:text-green-800" href="/about">
-          About Us
+          About
         </Link>
       </ul>
       <section className="lg:hidden">
-        <div onClick={() => setIsNavOpen((prev) => !prev)} className="flex ">
+        <div onClick={() => setIsNavOpen(!isNavOpen)} className="flex ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6 text-white"
@@ -62,25 +63,29 @@ const Navbar = () => {
           </div>
           <ul className="flex flex-col items-center justify-between min-h-[250px]">
             <Link
-              className="text-slate-900 border-b border-gray-400 my-8 uppercase"
+              onClick={() => setIsNavOpen(false)}
+              className="text-white border-b border-gray-400 my-8 uppercase"
               href="/"
             >
               Home
             </Link>
             <Link
-              className="text-slate-900 border-b border-gray-400 my-8 uppercase"
+              onClick={() => setIsNavOpen(false)}
+              className="text-white border-b border-gray-400 my-8 uppercase"
               href="/products"
             >
               Products
             </Link>
             <Link
-              className="text-slate-900 border-b border-gray-400 my-8 uppercase"
+              onClick={() => setIsNavOpen(false)}
+              className="text-white border-b border-gray-400 my-8 uppercase"
               href="/sale"
             >
               Sale
             </Link>
             <Link
-              className="text-slate-900 border-b border-gray-400 my-8 uppercase"
+              onClick={() => setIsNavOpen(false)}
+              className="text-white border-b border-gray-400 my-8 uppercase"
               href="/about"
             >
               About Us
