@@ -4,7 +4,9 @@ import { useCart } from "../context/CartContext";
 
 const Cart = () => {
   const { cartItems } = useCart();
-  const total = cartItems.reduce((acc, item) => acc + Number(item.price), 0);
+  const total = cartItems
+    .reduce((acc, item) => acc + Number(item.price), 0)
+    .toFixed(2);
 
   return (
     <div className="mt-4 space-y-6">
