@@ -19,9 +19,7 @@ const Navbar = () => {
         <Link className="hover:text-green-800" href="/products">
           Products
         </Link>
-        <Link className="hover:text-green-800" href="/sale">
-          Sale
-        </Link>
+
         <Link className="hover:text-green-800" href="/about">
           About
         </Link>
@@ -76,13 +74,7 @@ const Navbar = () => {
             >
               Products
             </Link>
-            <Link
-              onClick={() => setIsNavOpen(false)}
-              className="text-white border-b border-gray-400 my-8 uppercase"
-              href="/sale"
-            >
-              Sale
-            </Link>
+
             <Link
               onClick={() => setIsNavOpen(false)}
               className="text-white border-b border-gray-400 my-8 uppercase"

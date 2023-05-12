@@ -30,8 +30,8 @@ const ProductCards = ({ src, title, alt, price, _id }: ProductCardsProps) => {
           </span>
         </div>
       </div>
-      <div className="p-4 flex flex-col items-center">
-        <h1 className="text-gray-800 min-h-[48px] md:min-h-[24px] text-center mt-1">
+      <div className="p-3 lg:p-4 min-h-[184px] flex flex-col justify-between items-center">
+        <h1 className="text-gray-800 md:min-h-[24px] text-center mt-1">
           {title}
         </h1>
         <p className="text-center text-gray-800 mt-1">€{price}</p>
